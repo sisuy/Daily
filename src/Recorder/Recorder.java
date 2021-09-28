@@ -2,6 +2,8 @@ package Recorder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
+
 import Product.*;
 
 public class Recorder {
@@ -13,7 +15,6 @@ public class Recorder {
     public void add(Product p){
         recorder.add(p);
         System.out.println("record finished");
-        p.information();
     }
 
     //get the size of the recorder
@@ -44,11 +45,14 @@ public class Recorder {
     //search day
     public Recorder searchDay(int[] date){
         Recorder ret = new Recorder();
-
-        for(Product p: recorder){
-            if(Arrays.equals(p.getDate(), date)){
-                ret.add(p);
+        try{
+            for(Product p: recorder){
+                if(Arrays.equals(p.getDate(), date)){
+                    ret.add(p);
+                }
             }
+        }catch(NoSuchElementException e){
+            System.out.println("no record in that dat");
         }
         return ret;
     }

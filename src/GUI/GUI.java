@@ -1,28 +1,37 @@
 package GUI;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+
+import Recorder.Recorder;
 
 public class GUI {
-    Frame frame = new Frame();
-
     public GUI(){
-        frame.setSize(500,300);
+        JFrame frame = new JFrame();
+        frame.setTitle("Recorder");
 
-        Panel panel = new Panel();
-        frame.add(panel);
-
-        // button
-        Button add  = new Button("add");
-        Button search = new Button("search");
-
-        frame.add(add);
-        frame.add(search);
-
-        frame.setLayout(new FlowLayout());
+        /**set size and location*/
+        frame.setLocation(750,300);
+        frame.setSize(700,500);
+        frame.setResizable(true);
 
 
-        frame.setSize(1000,700);
-        frame.setLocation(700,300);
+        /**Panel*/
+        JPanel jpanel1 = new JPanel();
+
+
+        /**Label*/
+        JLabel label = new JLabel("Recorder");
+
+
+        /**button*/
+        JButton addition = new JButton("add",new ImageIcon());
+        addition.setBackground(Color.CYAN);
+
+        /**add*/
+
+
+        //frame.add(addition);
         frame.setVisible(true);
     }
-
 }

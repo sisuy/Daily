@@ -1,6 +1,7 @@
 package Product;
 
 public interface Product {
+
     //output the information
     void information();
 
