@@ -120,11 +120,10 @@ public class Recorder {
 
         /**data input*/
         int rowNum = 1;
-
         for(Product p:this.recorder){
             /**handle data*/
             String date = p.getDate()[0] + "/" + p.getDate()[1] + "/" +p.getDate()[2];
-            Row tmpRow = sheet.createRow(1);
+            Row tmpRow = sheet.createRow(rowNum);
 
             tmpRow.createCell(0).setCellValue(rowNum);
             tmpRow.createCell(1).setCellValue(date);
@@ -132,6 +131,7 @@ public class Recorder {
             tmpRow.createCell(3).setCellValue(p.getName());
             tmpRow.createCell(4).setCellValue(p.getName());
             tmpRow.createCell(5).setCellValue(p.getPrice());
+            rowNum ++;
         }
 
         /**output*/
