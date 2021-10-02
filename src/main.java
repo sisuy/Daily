@@ -27,13 +27,16 @@ public class main {
         System.out.println("2. get daily record");
         System.out.println("3. get the sum");
         System.out.println("4. search product record");
-        System.out.println("5.exit");
+        System.out.println("5. save");
+        System.out.println("6. load");
+        System.out.println("7. exit");
         System.out.println("---------------------------------------------------------");
     }
 
+
     public static void main(String args[]){
         Recorder recorder = new Recorder();
-
+        //recorder.save();
 
         while(true){
             list();
@@ -115,7 +118,16 @@ public class main {
 
                     System.out.println("finished search");
                     break;
+
+                case 5:
+                    /**save*/
+                    recorder.save();
+                    break;
+
+                case 7:
+                    break;
             }
+
 
         }
 

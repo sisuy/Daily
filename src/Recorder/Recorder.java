@@ -1,15 +1,23 @@
 package Recorder;
 
+import Product.Product;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+
+import javax.swing.*;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
-import Product.*;
-
 public class Recorder {
     //field
     ArrayList<Product> recorder =  new ArrayList<Product>();
-
 
     //add the product into the recorder
     public void add(Product p){
@@ -68,7 +76,74 @@ public class Recorder {
         return ret;
     }
 
+    //return recorder
     public ArrayList<Product> getRecorder() {
         return recorder;
+    }
+
+    //save the recorder into an xls file
+    public void save(){
+        /**get path*/
+        JFileChooser chooser = new JFileChooser();
+        JPanel parent = new JPanel();
+        int returnVal = chooser.showOpenDialog(parent);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            System.out.println("the address：" + chooser.getSelectedFile().getPath());
+        }
+        String path = chooser.getSelectedFile().getPath();
+
+        /**create a excel*/
+        Workbook workbook = new HSSFWorkbook();
+
+        Sheet sheet = workbook.createSheet();
+
+        Row row = sheet.createRow(0);
+
+        /**lable*/
+        for(int cellNUm = 0;cellNUm < 6;cellNUm ++){
+            Cell cell = row.createCell(cellNUm);
+        }
+
+        String str0 = "order";
+        String str1 = "date";
+        String str2 = "I/O";
+        String str3 = "name";
+        String str4 = "category";
+        String str5 = "price";
+
+        row.getCell(0).setCellValue(str0);
+        row.getCell(1).setCellValue(str1);
+        row.getCell(2).setCellValue(str2);
+        row.getCell(3).setCellValue(str3);
+        row.getCell(4).setCellValue(str4);
+        row.getCell(5).setCellValue(str5);
+
+        /**data input*/
+        int rowNum = 1;
+
+        for(Product p:this.recorder){
+            /**handle data*/
+            String date = p.getDate()[0] + "/" + p.getDate()[1] + "/" +p.getDate()[2];
+            Row tmpRow = sheet.createRow(1);
+
+            tmpRow.createCell(0).setCellValue(rowNum);
+            tmpRow.createCell(1).setCellValue(date);
+            tmpRow.createCell(2).setCellValue("O");
+            tmpRow.createCell(3).setCellValue(p.getName());
+            tmpRow.createCell(4).setCellValue(p.getName());
+            tmpRow.createCell(5).setCellValue(p.getPrice());
+        }
+
+        /**output*/
+        FileOutputStream output = null;
+        try {
+            output = new FileOutputStream(path);
+            workbook.write(output);
+            output.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
