@@ -122,9 +122,15 @@ public class main {
                 case 5:
                     /**save*/
                     recorder.save();
+                    System.out.println("save finished");
                     break;
 
+
+                case 6:
+                    /**load data*/
+                    recorder.load();
                 case 7:
+
                     break;
             }
 

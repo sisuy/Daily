@@ -14,7 +14,7 @@ public class Food implements Product{
     public void  information(){
         System.out.println("name: " + this.name);
         System.out.println("price:" + price);
-        System.out.println("date: " + date[0] + "/" + date[1] + "/" +date[2]);
+        System.out.println("date: " + date[0] + "-" + date[1] + "-" +date[2]);
     }
 
     public String getName(){
